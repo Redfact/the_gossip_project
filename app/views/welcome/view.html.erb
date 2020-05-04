@@ -9,7 +9,15 @@
 
 	<body>
 		<% name = params[:name]%>
-		<h1>Bienvenue <%=@name%> !!</h1>
+		<h1>Bienvenue <%=name%> !!</h1>
+
+		<% @gossips.each{ |index| %>
+        <p>
+          <%= index.user.first_name%>
+          <br/>
+          <%=link_to index.title, gossip_path(title: index.title )%>
+        </p>
+    <%} %>
 	</body>
 
 
