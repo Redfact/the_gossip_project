@@ -34,7 +34,7 @@ end
   # Creation de 20 potins
   20.times do
 
-     gossip = Gossip.create(title: Faker::Book.title,content: Faker::Hipster.sentences(number: 1), user_id: User.ids.sample)
+     gossip = Gossip.create(title: Faker::Book.title,content: Faker::Hipster.paragraph(sentence_count: 10), user_id: User.ids.sample)
       
       # Mise à jour des tag_id de tout les gossips
       gossip.tags << Tag.all.sample

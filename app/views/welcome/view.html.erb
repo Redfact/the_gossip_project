@@ -9,16 +9,36 @@
 
 	<body>
 		<% name = params[:name]%>
-		<h1>Bienvenue <%=name%> !!</h1>
 
-		<% @gossips.each{ |index| %>
-        <p>
-          <%= index.user.first_name%>
-          <br/>
-          <%=link_to index.title, gossip_path(title: index.title )%>
-        </p>
-    <%} %>
-	</body>
+			<div class="jumbotron jumbotron-fluid text-center" id="jumbo">
+				<div class="container justify-content-center">
+					<h1 class="text-white">Bienvenue <%=name%> !</h1>
+				</div>
+			</div>
+
+	<div class="">
+
+	</div>
+
+	<div class="container">
+	<div class="row justify-content-center">
+		<div>
+			<% @gossips.each{ |index| %>
+	    	<div class="card border border-info border-bottom-0">
+				<div class="card-header">
+				    Auteur : <%= index.user.first_name%>
+				</div>
+				<div class="card-body">
+					    <h5 class="card-title"><%=link_to index.title, gossip_path(title: index.title )%></h5>
+				</div>
+			</div>
+	    	<%} %>
+
+	   	</div>
+	</div>
+
+	</div>
+</body>
 
 
 </html>

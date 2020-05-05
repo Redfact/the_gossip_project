@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-
+ 
+  get 'author/viewauthor/:id' , to: "author#viewauthor" , as: 'author'
   get 'gossip/view/:title' , to: "gossip#view" , as: 'gossip'
   get 'welcome/view/:name' , to: 'welcome#view', as: 'welcome'
   get 'contact/contactView'

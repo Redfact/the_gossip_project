@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div class="row justify-content-center "style="padding-top: 1cm;">
+		<div class="card text-white bg-dark mb-3 d-flex align-content-center flex-wrap" style="width: 30rem;">
+			<%full_name = "#{@user.first_name} #{@user.last_name}"%>
+		  <div class="card-header"><h3><%=full_name%></h3></div>
+		  <div class="card-body">
+		    <p>Age : <%=@user.age%> ans</p>
+			<p>Ville : <%=@user.city.name%></p>
+			<p>E-mail : <a href="#"><%=@user.email%></a>
+			</p>
+		  </div>
+		</div>
+	</div>
+
+</body>
+</html>

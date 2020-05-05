@@ -1,3 +1,13 @@
 
-<h1>Gossip écrit par : <%=@user.first_name%> <%=@user.last_name%></h1>
-<p><%= @gossip.content%></p>
+<%full_name = "#{@user.first_name} #{@user.last_name}"%>
+
+<div class="row justify-content-center " style="padding-top: 1cm;">	
+	<div class="card border-info mb-3" style="width: 50rem;">
+		  <div class="card-header bg-transparent border-info"><h3><%= @gossip.title%></h3></div>
+		  <div class="card-body ">
+		    <p class="card-text"><%= @gossip.content%></p>
+		  </div>
+		  <div class="card-footer bg-transparent border-info">par : <%=link_to full_name, author_path(id: @user.id )%> le <%=@gossip.created_at%>  	
+		  </div>
+	</div>
+</div>
