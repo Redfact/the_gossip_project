@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Creer un nouveau Gossip</title>
+</head>
+<body>
+
+
+
+    <div class="row justify-content-center">
+    	<dir>
+	    	<%= form_tag gossips_path(action: 'create'), method: "post" do %>
+
+	      <%= label_tag 'Titre' %>
+	      <br />
+	      <%= text_field_tag 'title', params[:title] %>
+	      <br /> <br />
+
+	      <%= label_tag 'Contenu' %>
+	      <br />
+	      <%= text_area_tag 'content',params[:content] %>
+	      <br /> <br />
+
+	      <%= submit_tag "Creer Gossip" %>
+
+	    	<% end %>
+    	</dir>
+
+    </div>
+
+</body>
+</html>
