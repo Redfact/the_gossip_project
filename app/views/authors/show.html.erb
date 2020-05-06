@@ -5,15 +5,17 @@
 </head>
 <body>
 	<div class="row justify-content-center "style="padding-top: 1cm;">
-		<div class="card text-white bg-dark mb-3 d-flex align-content-center flex-wrap" style="width: 30rem;">
-			<%full_name = "#{@user.first_name} #{@user.last_name}"%>
-		  <div class="card-header"><h3><%=full_name%></h3></div>
-		  <div class="card-body">
+		<div class="card bg-light mb-3" style="width: 30cm;">
+		<div class="card-header text-uppercase font-weight-bold">
+		<%=full_name = "#{@user.first_name} #{@user.last_name}"%>
+		</div>
+		<div class="card-body">
 		    <p>Age : <%=@user.age%> ans</p>
-			<p>Ville : <%=@user.city.name%></p>
-			<p>E-mail : <a href="#"><%=@user.email%></a>
-			</p>
-		  </div>
+		    <p>Ville : <%=link_to @user.city.name,city_path(id:@user.city.id)%>  </p>
+			<p>E-mail : <a href="#"><%=@user.email%></a></p>
+			<p>Description : </br><%=@user.description%> </p>
+		</div>
+		</div>
 		</div>
 	</div>
 

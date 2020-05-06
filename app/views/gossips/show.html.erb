@@ -3,11 +3,32 @@
 
 <div class="row justify-content-center " style="padding-top: 1cm;">	
 	<div class="card border-info mb-3" style="width: 50rem;">
-		  <div class="card-header bg-transparent border-info"><h3 class="text-info"><%= @gossip.title%></h3></div>
-		  <div class="card-body ">
+		<div class="card-header bg-transparent border-info">
+			<h3 class="text-info"><%= @gossip.title%></h3>
+		</div>
+		<div class="card-body ">
 		    <p class="card-text"><%=@gossip.content%></p>
-		  </div>
-		  <div class="card-footer bg-transparent border-info">par : <%=link_to full_name, author_path(id: @user.id )%> le <%=@gossip.created_at%> à <%=link_to @user.city.name%>	
-		  </div>
+		</div>
+		<div class="card-footer bg-transparent border-info">
+			<p>par : <%=link_to full_name, author_path(id: @user.id )%> le <%=@gossip.created_at%> à <%=link_to @user.city.name,city_path(id:@user.city.id)%></p>
+			<p><%=link_to "Modifier",edit_gossip_path(id:@gossip.id)%></p>	
+			<p><%=link_to "Supprimer", gossip_path(id:@gossip.id), method: :delete, data: { confirm: 'Supprimer definitivement ce gossip ?' }%></p>
+		</div>
+		<div class="card-footer bg-transparent border-info">
+			<button data-toggle="collapse" data-target="#comments" class="btn btn-info">Commentaires (<%=@comments.size%>)</button>
+			<div id="comments" class="collapse">
+				<% @comments.each{ |index| %>
+				<div class="card-footer bg-transparent border-light">
+					<p class="text-right text-secondary">
+						<%=index.content%>
+					</p>					
+					<p class="text-right text-secondary">
+						par : <%=index.user.first_name%>
+					</p>
+				</div>
+				<%} %>
+			</div>
+		</div>
 	</div>
 </div>
+

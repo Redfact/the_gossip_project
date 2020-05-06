@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ville</title>
+</head>
+	<body>
+		<div class="card border-light mb-3" style="width: 100%;">
+			<div class="card-header font-weight-bold">Les gossips de <%=@city.name%></div>
+					<% @gossips.each{ |index|%>
+				<div class="card-body card text-center">
+					<p class="card-title">Auteur : <%= index.user.first_name%></p>
+					<p class="card-text"><%=link_to index.title, gossip_path(id: index.id )%></p>
+				</div><%} %>
+			</div>
+		</div>
+
+	</body>
+</html>
