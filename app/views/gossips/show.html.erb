@@ -17,13 +17,24 @@
 		<div class="card-footer bg-transparent border-info">
 			<button data-toggle="collapse" data-target="#comments" class="btn btn-info">Commentaires (<%=@comments.size%>)</button>
 			<div id="comments" class="collapse">
+		    	<dir>
+			    <%= form_tag comments_path(action: 'create'), method: "post" do %>
+			      <br />
+			      <%=hidden_field_tag 'id',params[:id]%>
+			      <%= text_area_tag 'content',params[:content] ,:rows=>1, :cols=>65 %>
+			      <br /> 
+			      <%= submit_tag "Commenter" , class:"btn btn-outline-info "%>
+
+			    <% end %>
+		    	</dir>
 				<% @comments.each{ |index| %>
 				<div class="card-footer bg-transparent border-light">
 					<p class="text-right text-secondary">
 						<%=index.content%>
 					</p>					
 					<p class="text-right text-secondary">
-						par : <%=index.user.first_name%>
+						par : <span  class="text-warning" > <%=index.user.first_name%> </span> ,
+						<%= link_to "Modifier",edit_comment_path(id:index.id)%>
 					</p>
 				</div>
 				<%} %>

@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   get 'team/teamView'
 
   
-  resources :gossips ,:authors, :cities
+  resources :gossips ,:authors, :cities ,:comments
 end
 

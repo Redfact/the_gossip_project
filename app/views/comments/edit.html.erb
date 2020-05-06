@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Modifier commentaire</title>
+</head>
+<body>
+	    <div class="row justify-content-center">
+		<%=form_for(@comment) do |f| %>
+
+			<div class="form-group" >
+				<div class="field" style=>
+			    <%= f.label :content %><br>
+			    <%= f.text_area :content, :rows=>5, :cols=>60 %>
+			 	</div>
+		  	</div>
+
+			<div class="actions btn btn-outline-secondary" >
+			    <%= f.submit %>
+			</div>
+
+		<% end %>
+
+
+	    </div>
+
+	    <div class="row justify-content-center ">
+
+			<%=link_to "Supprimer le commentaire", comment_path(id:@comment.id), method: :delete, data: { confirm: 'Supprimer definitivement ce commentaire ?' },class: "p-3 mb-2 bg-danger text-white"%>
+		</div>
+
+
+	    <% if @comment.errors.any? %>
+	    <div class="row justify-content-center "style="padding-top: 1cm;">
+			<div class="card card text-white bg-danger mb-3" style="width: 30cm;">
+			<div class="card-header text-uppercase font-weight-bold">
+			Attention erreur de saisis !
+			</div>
+			<div class="card-body">
+			  <p>Nous n'avons pas réussi à modifier le commentaire pour la (ou les) raison(s) suivante(s) :</p>
+			  <ul>
+			    <% @comment.errors.full_messages.each do |message| %>
+			      <li><%= message %></li>
+			    <% end %>
+			  </ul>
+			</div>
+			</div>
+		</div>
+		<% end %>
+
+</body>
+</html>
