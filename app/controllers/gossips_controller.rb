@@ -1,9 +1,11 @@
 	
 class GossipsController < ApplicationController
+	
   def show
   	@gossip = Gossip.find(params[:id])
   	@user=@gossip.user	
   end
+
   def new
   	puts "controller new Gossip".colorize(:light_green)
 

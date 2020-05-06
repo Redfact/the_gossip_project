@@ -3,11 +3,11 @@
 
 <div class="row justify-content-center " style="padding-top: 1cm;">	
 	<div class="card border-info mb-3" style="width: 50rem;">
-		  <div class="card-header bg-transparent border-info"><h3><%= @gossip.title%></h3></div>
+		  <div class="card-header bg-transparent border-info"><h3 class="text-info"><%= @gossip.title%></h3></div>
 		  <div class="card-body ">
 		    <p class="card-text"><%=@gossip.content%></p>
 		  </div>
-		  <div class="card-footer bg-transparent border-info">par : <%=link_to full_name, author_path(id: @user.id )%> le <%=@gossip.created_at%>  	
+		  <div class="card-footer bg-transparent border-info">par : <%=link_to full_name, author_path(id: @user.id )%> le <%=@gossip.created_at%> à <%=link_to @user.city.name%>	
 		  </div>
 	</div>
 </div>
