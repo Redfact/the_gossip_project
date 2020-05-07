@@ -42,15 +42,20 @@
 				</div>
 				<div class="card-body">
 					    <h5 class="card-title"><%=link_to index.title, gossip_path(id: index.id )%></h5>
-				</div>
+					    <% liked = index.users.ids.include?( session[:user_id] ) %>
+					    <%if(liked)then%>
+					    <%id_like = index.likes.find_by(user_id: session[:user_id])%>
+					    <%id_like.id%>
+					    <%=link_to "J'aime",like_path(id:id_like.id), method: :delete,class:"badge badge-pill badge-primary" %>
+					    <%else%>
+					    <%=link_to "J'aime",likes_path(user_id: session[:user_id],gossip_id: index.id),method: :post,class:"badge badge-pill badge-secondary"%>
+					    <%end%>
+				</div>	
+
 			</div>
 	    	<%} %>
-
 	   	</div>
 	</div>
-
 	</div>
 </body>
-
-
 </html>

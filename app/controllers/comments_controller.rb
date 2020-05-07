@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-	before_action :authenticate_user, only: [:new , :create]
+	before_action :authenticate_user, only: [:new , :create, :update , :edit]
 
 	def authenticate_user
 		unless session[:user_id]
@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
 
 	def create
 		puts "controller create Comment".colorize(:light_green)
-		@comment  = Comment.new(content: params[:content] , user_id:User.ids.sample , gossip_id: params[:id]) 
+		@comment  = Comment.new(content: params[:content] , user_id:session[:user_id] , gossip_id: params[:id]) 
 
 		@state = @comment.save
 	  	if @state then 

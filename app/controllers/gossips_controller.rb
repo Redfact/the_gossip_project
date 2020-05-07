@@ -67,6 +67,7 @@ class GossipsController < ApplicationController
   		#Detruit les commentaires avant de détruire le gossip
   		gosp = Gossip.all.find(params[:id])
   		gosp.comments.destroy_all
+  		gosp.likes.destroy_all
   		gosp.destroy
  	   	redirect_to  root_path
   	end

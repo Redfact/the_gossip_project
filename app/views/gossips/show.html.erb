@@ -1,6 +1,7 @@
 
 <%full_name = "#{@user.first_name} #{@user.last_name}"%>
-<% thisisMyGossip = User.find(session[:user_id]).gossips.ids.include?(@gossip.id) %>
+<%if( session[:user_id])then%>
+<% thisisMyGossip = User.find(session[:user_id]).gossips.ids.include?(@gossip.id)else thisisMyGossip = false end%>
 
 <div class="row justify-content-center " style="padding-top: 1cm;">	
 	<div class="card border-info mb-3" style="width: 50rem;">
