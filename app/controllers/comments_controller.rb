@@ -1,5 +1,13 @@
 class CommentsController < ApplicationController
 
+	before_action :authenticate_user, only: [:new , :create]
+
+	def authenticate_user
+		unless session[:user_id]
+			redirect_to new_session_path
+		end
+	end
+
 	def create
 		puts "controller create Comment".colorize(:light_green)
 		@comment  = Comment.new(content: params[:content] , user_id:User.ids.sample , gossip_id: params[:id]) 

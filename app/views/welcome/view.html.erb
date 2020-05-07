@@ -24,6 +24,7 @@
 	<div class="row justify-content-center">
 		<div>
 			<div>
+			<%if( session[:user_id])then%>
 			<div class="card border border-info border-bottom-0">
 				<div class="card-header">
 				    <h3>
@@ -31,6 +32,7 @@
 				    </h3>
 				</div>
 			</div>
+			<%end%>
 			
 			</div>
 			<% @gossips.each{ |index| %>

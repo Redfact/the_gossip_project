@@ -1,18 +1,22 @@
 
 <%full_name = "#{@user.first_name} #{@user.last_name}"%>
+<% thisisMyGossip = User.find(session[:user_id]).gossips.ids.include?(@gossip.id) %>
 
 <div class="row justify-content-center " style="padding-top: 1cm;">	
 	<div class="card border-info mb-3" style="width: 50rem;">
 		<div class="card-header bg-transparent border-info">
-			<h3 class="text-info"><%= @gossip.title%></h3>
+			<h3 class="text-info"><%= @gossip.title %> </h3>
 		</div>
 		<div class="card-body ">
 		    <p class="card-text"><%=@gossip.content%></p>
 		</div>
 		<div class="card-footer bg-transparent border-info">
 			<p>par : <%=link_to full_name, author_path(id: @user.id )%> le <%=@gossip.created_at%> à <%=link_to @user.city.name,city_path(id:@user.city.id)%></p>
-			<p><%=link_to "Modifier",edit_gossip_path(id:@gossip.id)%></p>	
-			<p><%=link_to "Supprimer", gossip_path(id:@gossip.id), method: :delete, data: { confirm: 'Supprimer definitivement ce gossip ?' }%></p>
+
+			<%if(thisisMyGossip)then%>
+				<p><%=link_to "Modifier",edit_gossip_path(id:@gossip.id)%></p>	
+				<p><%=link_to "Supprimer", gossip_path(id:@gossip.id), method: :delete, data: { confirm: 'Supprimer definitivement ce gossip ?' }%></p>
+			<%end%>
 		</div>
 		<div class="card-footer bg-transparent border-info">
 			<button data-toggle="collapse" data-target="#comments" class="btn btn-info">Commentaires (<%=@comments.size%>)</button>
@@ -42,4 +46,3 @@
 		</div>
 	</div>
 </div>
-

@@ -1,5 +1,19 @@
 	
 class GossipsController < ApplicationController
+	before_action :authenticate_user, only: [:new , :create]
+	before_action :isMyGossip, only: [:edit, :update ,:destroy]
+
+	def authenticate_user
+		unless session[:user_id]
+			redirect_to new_session_path
+		end
+	end
+
+	def isMyGossip
+		if( !User.find(session[:user_id]).gossips.ids.include?(params[:id].to_i) )
+			redirect_to gossip_path
+		end
+	end
 	
   def show
   	@gossip = Gossip.find(params[:id])
@@ -14,7 +28,7 @@ class GossipsController < ApplicationController
 
   def create
 	  	puts "controller create Gossip".colorize(:light_green)
-	  	@gossip = Gossip.new(title: params[:title] ,content: params[:content],user_id: User.ids.sample)
+	  	@gossip = Gossip.new(title: params[:title] ,content: params[:content],user_id: session[:user_id])
 	  	puts params[:title].colorize(:light_green), params[:content].colorize(:light_green)
 	  	@state = @gossip.save
 	  	if @state then # essaie de sauvegarder en base @gossip
@@ -25,7 +39,7 @@ class GossipsController < ApplicationController
 	  		puts @gossip.errors.full_messages
 	  		render new_gossip_path 
 	    end
-  	end
+  end
 
   def index
   	puts "controller index Gossip".colorize(:light_green)	
@@ -50,7 +64,10 @@ class GossipsController < ApplicationController
 
   	def destroy
   		puts "controller delete Gossip".colorize(:light_green)
-  		Gossip.all.find(params[:id]).destroy
+  		#Detruit les commentaires avant de détruire le gossip
+  		gosp = Gossip.all.find(params[:id])
+  		gosp.comments.destroy_all
+  		gosp.destroy
  	   	redirect_to  root_path
   	end
 

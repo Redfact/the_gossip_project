@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Creer un nouveau profil</title>
+</head>
+<body>
+	<div class="row justify-content-center">
+    	<dir>
+	    <%= form_tag authors_path(action: 'create'), method: "post" do %>
+	      <%= label_tag 'Email *' %>
+	      <br />
+	      <%= text_field_tag 'email', params[:email]%>
+	      <br /> <br />
+
+	      <%= label_tag 'Nom' %>
+	      <br />
+	      <%= text_field_tag 'last_name', params[:last_name]%>
+	      <br /> <br />
+
+	      <%= label_tag 'Prenom' %>
+	      <br />
+	      <%= text_field_tag 'first_name', params[:first_name]%>
+	      <br /> <br />
+
+	      <%= label_tag 'Password *' %>
+	      <br />
+	      <%= text_field_tag 'password',params[:password]%>
+
+	      <br /> <br />
+
+	      <%= label_tag 'Confirmez password *' %>
+	      <br />
+	      <%= text_field_tag 'conf_password', params[:conf_password]%>
+	      <br /> <br />
+
+	      <%= submit_tag "Creer compte" %>
+
+	      <% end %>
+    	</dir>
+
+    	<% if @state == false  %>
+	    <div class="row justify-content-center "style="padding-top: 1cm;">
+			<div class="card card text-white bg-danger mb-3" style="width: 30cm;">
+			<div class="card-header text-uppercase font-weight-bold">
+			Attention erreur!
+			</div>
+			<div class="card-body">
+			  <p>Nous n'avons pas réussi à creer le profil pour la (ou les) raison(s) suivante(s) :</p>
+			  <ul>
+			    <% @user.errors.full_messages.each do |message| %>
+			      <li><%= message %></li>
+			    <% end %>
+			  </ul>
+			</div>
+			</div>
+		</div>
+	<% end %>
+
+    </div>
+
+
+
+</body>
+</html>
