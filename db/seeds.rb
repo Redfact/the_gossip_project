@@ -13,6 +13,7 @@ User.all.destroy_all
 Tag.all.destroy_all
 City.all.destroy_all
 Gossip.all.destroy_all
+Comment.all.destroy
 
 
 10.times do
@@ -28,7 +29,7 @@ end
   
   # Creation de 10 utilisateurs
   10.times do
-    user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.safe_email,age: rand(18..60), description: Faker::Hipster.paragraph(sentence_count: 1), city_id: City.ids.sample,password:"pass")
+    user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.safe_email,age: rand(18..60), description: Faker::Hipster.paragraph(sentence_count: 1), city_id: City.ids.sample,password:"123456789")
   end
 
   # Creation de 20 potins
