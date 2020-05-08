@@ -28,7 +28,7 @@ end
   
   # Creation de 10 utilisateurs
   10.times do
-    user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.safe_email,age: rand(18..60), description: Faker::Hipster.paragraph(sentence_count: 1), city_id: City.ids.sample)
+    user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.safe_email,age: rand(18..60), description: Faker::Hipster.paragraph(sentence_count: 1), city_id: City.ids.sample,password:"pass")
   end
 
   # Creation de 20 potins
