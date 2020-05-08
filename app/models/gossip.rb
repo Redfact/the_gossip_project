@@ -6,6 +6,6 @@ class Gossip < ApplicationRecord
 	has_many :likes
 	has_many :users,:through => :likes
 
-	validates :title , presence:true ,length:{in: 3..30}
+	validates :title , presence:true ,length:{in: 3..60}
 	validates :content , presence:true
 end
